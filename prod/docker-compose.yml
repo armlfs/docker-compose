@@ -1,0 +1,22 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+      - 80:80
+  wanderer-api:
+    image: armlfs/wanderer-api
+    environment:
+      - VIRTUAL_HOST=wanderer.api.armlfs.org
+  mysql:
+    image: mysql
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+volumes:
+  mysql:
+    external:
+      name: armlfs_mysql
