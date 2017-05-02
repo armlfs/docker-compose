@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -o allexport
+test -f .env.example && source .env.example
+test -f .env && source .env
+set +o allexport
+
+docker-compose \
+  -f ${MYSQL:-mysql}/docker-compose.yml \
+  -f ${WANDERER_API:-wanderer-api}/docker-compose.yml \
+  "$@"
