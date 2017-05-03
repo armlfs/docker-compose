@@ -1,9 +1,6 @@
 #!/bin/bash
 
-set -o allexport
-test -f .env.example && source .env.example
 test -f .env && source .env
-set +o allexport
 
 docker-compose \
   -f nginx/docker-compose.yml \
