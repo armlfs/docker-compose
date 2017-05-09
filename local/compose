@@ -3,7 +3,7 @@
 test -f .env && source .env
 
 docker-compose \
-  -f nginx/docker-compose.yml \
-  -f mysql/docker-compose.yml \
-  -f ${WANDERER_API:-wanderer-api}/docker-compose.yml \
-  "$@"
+    --project-directory . \
+    -f docker-compose.yml \
+    ${WANDERER_API:+-f $WANDERER_API/docker-compose.yml} \
+    "$@"

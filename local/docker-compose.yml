@@ -1,5 +1,15 @@
 version: '2'
 services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+    links:
+      - wanderer-api
+  wanderer-api:
+    image: armlfs/wanderer-api
   mysql:
     image: mysql
     ports:
